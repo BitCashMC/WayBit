@@ -1,4 +1,4 @@
-package us.bitcash;
+package us.bitcash.waybitbackend;
 
 import junit.framework.Test;
 import junit.framework.TestCase;
