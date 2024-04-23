@@ -1,4 +1,4 @@
-package us.bitcash.waybitbackend;
+package us.bitcash.waybit.backend;
 
 /**
  * Hello world!
