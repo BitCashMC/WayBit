@@ -64,7 +64,7 @@
             <!-- Default configuration for running with: mvn clean javafx:run -->
             <id>default-cli</id>
             <configuration>
-              <mainClass>us.bitcash.waybit.waybitfrontend/us.bitcash.waybit.frontend.live.HelloApplication</mainClass>
+              <mainClass>us.bitcash.waybit.waybitfrontend/us.bitcash.waybit.frontend.App</mainClass>
               <launcher>app</launcher>
               <jlinkZipName>app</jlinkZipName>
               <jlinkImageName>app</jlinkImageName>

@@ -3,6 +3,6 @@ module us.bitcash.waybit.frontend {
     requires javafx.fxml;
 
 
-    opens us.bitcash.waybit.frontend.live to javafx.fxml;
-    exports us.bitcash.waybit.frontend.live;
+    exports us.bitcash.waybit.frontend;
+    opens us.bitcash.waybit.frontend to javafx.fxml;
 }
