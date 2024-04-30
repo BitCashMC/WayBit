@@ -11,7 +11,7 @@ public class SessionService {
 
     public static boolean attemptLogin(Session session, Customer.CustomerCredentials credentials) {
 
-        Customer loaded_customer = loadAccountFromFileSystem(retrieveCustomerFile(credentials.getEmailAddress()).get());
+        Customer loaded_customer = loadAccountFromFileSystem(createCustomerFile(credentials.getEmailAddress()).get());
 
         if (credentials.getPassword().equals(loaded_customer.getCredentials().getPassword())) {
             session.setCustomer(loaded_customer);
@@ -25,8 +25,7 @@ public class SessionService {
 
     public static boolean attemptRegistration(Session session, Customer.CustomerCredentials credentials) {
 
-        File custFile = retrieveCustomerFile(credentials.getEmailAddress()).get();
-        if (custFile == null || custFile.exists()) return false;
+        File custFile = createCustomerFile(credentials.getEmailAddress()).get();
 
         Customer newCustomer = new Customer(credentials);
 
@@ -50,8 +49,7 @@ public class SessionService {
     }
 
     private static void saveAccountToFileSystem(Customer c) {
-
-        File cFile = retrieveCustomerFile(c.getCredentials().getEmailAddress()).get();
+        File cFile = createCustomerFile(c.getCredentials().getEmailAddress()).get();
 
         try {
             if (!cFile.exists()) cFile.createNewFile();
@@ -63,8 +61,9 @@ public class SessionService {
         } catch (IOException e) {}
     }
 
-    public static Optional<File> retrieveCustomerFile(String email) {
-        return Optional.of(new File(SessionService.class.getResource("accounts/" + email+".ser").toExternalForm()));
+    public static Optional<File> createCustomerFile(String email) {
+        String path = SessionService.class.getResource("accounts/").getPath();
+        return path != null ? Optional.of(new File(path + email + ".ser")) : Optional.empty();
     }
 
 }
