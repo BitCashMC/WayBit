@@ -8,7 +8,6 @@ public class Session {
     private String sessionID = null;
     private boolean isLoggedIn;
 
-
     public void setLoggedIn(boolean status) {
         this.isLoggedIn = status;
     }
@@ -21,6 +20,7 @@ public class Session {
     }
 
     public void setCustomer(Customer customer) {
+        this.isLoggedIn = true;
         this.customer = customer;
     }
 

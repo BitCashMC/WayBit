@@ -1,20 +1,31 @@
 package us.bitcash.waybit.backend;
 
-public class Customer {
+import java.io.Serializable;
+
+public class Customer implements Serializable {
+    private static final long serialVersionUID = 1L;
 
     private String displayName;
     private CustomerCredentials credentials;
 
+    private CustomerFile file = null;
+
     public Customer(CustomerCredentials credentials) {
         this.displayName = null;
         this.credentials = credentials;
+        this.file = new CustomerFile(this);
+    }
+
+    public CustomerFile getCustomerFile() {
+        return this.file;
     }
 
     public CustomerCredentials getCredentials() {
         return new CustomerCredentials(this.credentials);
     }
 
-    static class CustomerCredentials {
+    static class CustomerCredentials implements Serializable {
+        private static final long serialVersionUID = 1L;
 
         public CustomerCredentials(CustomerCredentials cc) {
             this.emailAddress = cc.emailAddress;

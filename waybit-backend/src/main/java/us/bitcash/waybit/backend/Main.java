@@ -3,17 +3,24 @@ package us.bitcash.waybit.backend;
 public class Main {
 
     public static void main(String[] args) {
-        Session test = SessionService.createSession();
 
-        SessionService.attemptRegistration(test,new Customer.CustomerCredentials(
-                "bitcashmc@gmail.com",
-                "1234567"
+        Session s1 = SessionService.createSession();
+
+        //s1.launch()
+
+
+
+        Status regStatus = SessionService.attemptRegistration(s1,new Customer.CustomerCredentials(
+                "123@org.com",
+                "123456"
         ));
 
-        SessionService.attemptLogin(test,new Customer.CustomerCredentials(
-                "bitcashmc@gmail.com",
-                "1234567"
-        ));
+        System.out.println(regStatus);
+
+        Status state = SessionService.attemptLogin(s1,new Customer.CustomerCredentials("13@org.com","12345"));
+        System.out.println(state.toString());
+
+
     }
 
 
