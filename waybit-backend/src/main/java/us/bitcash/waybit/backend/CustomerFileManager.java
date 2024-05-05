@@ -3,9 +3,10 @@ package us.bitcash.waybit.backend;
 import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.Optional;
 
 public class CustomerFileManager {
-    protected static Customer loadAccountFromFileSystem(String email) {
+    protected static Optional<Customer> loadAccountFromFileSystem(String email) {
         Customer loaded_customer = null;
 
         try (FileInputStream fileIn = new FileInputStream(getPointerToAccountFile(email));
@@ -15,7 +16,7 @@ public class CustomerFileManager {
             System.err.println("Error whilst trying to retrieve account at " + getPointerToAccountFile(email));
             System.err.println(e);
         }
-        return loaded_customer;
+        return Optional.ofNullable(loaded_customer);
     }
 
     protected static void saveAccountToFileSystem(Customer c) {

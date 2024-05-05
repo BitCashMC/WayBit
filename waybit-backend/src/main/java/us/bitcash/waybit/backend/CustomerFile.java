@@ -7,11 +7,11 @@ class CustomerFile extends File {
     private Customer customer;
     CustomerFile(Customer c) {
         super(CustomerFileManager.getPointerToAccountFile(c.getCredentials().getEmailAddress()));
-        try {
-            this.createNewFile();
-        } catch (IOException e) {
-            System.err.println("Failure to create file -- \n" + e);;
-        }
+//        try {
+//            this.createNewFile();
+//        } catch (IOException e) {
+//            System.err.println("Failure to create file -- \n" + e);;
+//        }
     }
 
     protected Customer getCustomer() {

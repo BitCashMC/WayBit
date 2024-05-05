@@ -24,7 +24,7 @@ public class Customer implements Serializable {
         return new CustomerCredentials(this.credentials);
     }
 
-    static class CustomerCredentials implements Serializable {
+    public static class CustomerCredentials implements Serializable {
         private static final long serialVersionUID = 1L;
 
         public CustomerCredentials(CustomerCredentials cc) {

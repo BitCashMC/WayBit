@@ -34,6 +34,10 @@ public class Session {
         this.isLoggedIn = false;
     }
 
+    public void activate() {
+
+    }
+
 
 
 }

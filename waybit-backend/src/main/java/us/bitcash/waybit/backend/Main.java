@@ -8,17 +8,10 @@ public class Main {
 
         //s1.launch()
 
+        System.out.println(
+                SessionService.attemptRegistration(s1,new Customer.CustomerCredentials("bitcash8@mc.gmail","123456"))
+        );
 
-
-        Status regStatus = SessionService.attemptRegistration(s1,new Customer.CustomerCredentials(
-                "123@org.com",
-                "123456"
-        ));
-
-        System.out.println(regStatus);
-
-        Status state = SessionService.attemptLogin(s1,new Customer.CustomerCredentials("13@org.com","12345"));
-        System.out.println(state.toString());
 
 
     }

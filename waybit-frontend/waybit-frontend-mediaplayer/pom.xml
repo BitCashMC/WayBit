@@ -3,26 +3,21 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
+
   <parent>
     <groupId>us.bitcash.waybit</groupId>
-    <artifactId>waybit</artifactId>
+    <artifactId>waybit-frontend</artifactId>
     <version>1.0-SNAPSHOT</version>
   </parent>
 
-  <artifactId>waybit-frontend</artifactId>
-  <packaging>pom</packaging>
-
-  <name>frontend</name>
-  <url>http://maven.apache.org</url>
+  <groupId>masteringJfx</groupId>
+  <artifactId>waybit-frontend-mediaplayer</artifactId>
+  <version>1.0-SNAPSHOT</version>
+  <name>waybit-frontend-mediaplayer</name>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 <junit.version>5.10.0</junit.version>  </properties>
-
-  <modules>
-    <module>waybit-frontend-mediaplayer</module>
-    <module>waybit-frontend-login</module>
-  </modules>
 
   <dependencies>
     <dependency>
@@ -47,14 +42,7 @@
       <artifactId>junit-jupiter-engine</artifactId>
       <version>${junit.version}</version>
       <scope>test</scope>
-    </dependency>
-      <dependency>
-          <groupId>us.bitcash.waybit</groupId>
-          <artifactId>waybit-backend</artifactId>
-          <version>1.0-SNAPSHOT</version>
-          <scope>compile</scope>
-      </dependency>
-  </dependencies>
+    </dependency>  </dependencies>
 
   <build>
     <plugins>
@@ -76,7 +64,7 @@
             <!-- Default configuration for running with: mvn clean javafx:run -->
             <id>default-cli</id>
             <configuration>
-              <mainClass>us.bitcash.waybit.waybitfrontend/us.bitcash.waybit.frontend.App</mainClass>
+              <mainClass>masteringjfx.waybitfrontendmediaplayer/masteringjfx.waybitfrontendmediaplayer.HelloApplication</mainClass>
               <launcher>app</launcher>
               <jlinkZipName>app</jlinkZipName>
               <jlinkImageName>app</jlinkImageName>

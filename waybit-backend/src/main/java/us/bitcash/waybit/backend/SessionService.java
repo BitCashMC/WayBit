@@ -1,18 +1,28 @@
 package us.bitcash.waybit.backend;
 
-public class SessionService {
+import java.util.Optional;
 
+public class SessionService {
     public static Session createSession() {
+        Session s = new Session();
         return new Session();
     }
 
     public static Status attemptLogin(Session session, Customer.CustomerCredentials credentials) {
 
-        if (!CustomerFileManager.queryAccountFromFileSystem(credentials.getEmailAddress())) return Status.NOT_FOUND;
+        String email = credentials.getEmailAddress();
+        String password = credentials.getPassword();
 
-        Customer loaded_customer = CustomerFileManager.loadAccountFromFileSystem(credentials.getEmailAddress());
+        if (!email.matches("^[\\w-]+@(\\w+\\.)+([a-z]+)$")) return Status.FAILURE;
 
-        if (credentials.getPassword().equals(loaded_customer.getCredentials().getPassword())) {
+        if (!CustomerFileManager.queryAccountFromFileSystem(email)) return Status.NOT_FOUND;
+
+        Customer loaded_customer;
+        Optional<Customer> custOpt = CustomerFileManager.loadAccountFromFileSystem(email);
+        if (custOpt.isPresent()) loaded_customer = custOpt.get();
+        else return Status.FAILURE;
+
+        if (password.equals(loaded_customer.getCredentials().getPassword())) {
             session.setCustomer(loaded_customer);
 
             return Status.SUCCESS;
@@ -23,9 +33,19 @@ public class SessionService {
 
     public static Status attemptRegistration(Session session, Customer.CustomerCredentials credentials) {
 
+        String email = credentials.getEmailAddress();
+        String password = credentials.getPassword();
+
         Customer cust = new Customer(credentials);
 
-        if (CustomerFileManager.queryAccountFromFileSystem(credentials.getEmailAddress())) return Status.FAILURE;
+        if (CustomerFileManager.queryAccountFromFileSystem(email))
+            return Status.FAILURE;
+
+        if (email.isEmpty() || password.isEmpty())
+            return Status.FAILURE;
+
+        if (!email.matches("^[\\w-]+@(\\w+\\.)+([a-z]+)$")) return Status.FAILURE;
+
 
         CustomerFileManager.saveAccountToFileSystem(cust);
         session.setCustomer(cust);
